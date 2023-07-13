@@ -1,0 +1,24 @@
+h2 {
+  text-align: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+#pokemonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#stats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+}

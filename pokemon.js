@@ -38,9 +38,19 @@ const renderSelectPokemon = (pokemon) => {
   const h2 = document.querySelector(`h2`);
   const section = document.querySelector(`section`);
   h2.innerHTML = `No.${pokemon.id}<br>${capitilize(pokemon.name)}`;
-  console.log(pokemon);
   section.innerHTML = `<img src='${pokemon.sprites.front_shiny}'/>`;
+  getStats(pokemon);
 }
+
+const getStats = (pokemon) => {
+  console.log(pokemon);
+  const stats = pokemon.stats.map(stat => {
+    return `<ul>${stat.stat.name}<li>${stat.base_stat}<li></ul>`
+  }).join(``);
+  const statsList = document.querySelector(`#stats`);
+  statsList.innerHTML = stats;
+}
+
 
 const capitilize = (pokemonName) => {
   const firstLetter = pokemonName.charAt(0);
