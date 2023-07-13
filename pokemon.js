@@ -1,5 +1,3 @@
-// retrieve pokemon
-
 const getPokeCollection = async() => {
   try {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
