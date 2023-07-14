@@ -69,15 +69,24 @@ const totalStats = (pokemon) => {
 }
 
 // Used a for loop here to break out of mapping everything, I don't feel as if this was the best choice at the moment
+// I couldn't join them with /
+
+// const getType = (pokemon) => {
+//   const types = pokemon.types;
+//   let typeText = ``;
+//   for (let i = 0; i < types.length; i++) {
+//     typeText += `${capitilize(types[i].type.name)} `;
+//   }
+//   const typingContainer = document.querySelector(`#typing`);
+//   typingContainer.innerHTML = typeText;
+// }
 
 const getType = (pokemon) => {
-  const types = pokemon.types;
-  let typeText = ``;
-  for (let i = 0; i < types.length; i++) {
-    typeText += `${types[i].type.name} `;
-  }
+  const types = pokemon.types.map(type => {
+    return `${capitilize(type.type.name)}`
+  }).join(`/`);
   const typingContainer = document.querySelector(`#typing`);
-  typingContainer.innerHTML = typeText;
+  typingContainer.innerHTML = types;
 }
 
 const init = async() => {
