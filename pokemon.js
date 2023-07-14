@@ -33,15 +33,23 @@ const selectPokemon = () => {
 }
 
 const renderSelectPokemon = (pokemon) => {
-  const h2 = document.querySelector(`h2`);
+  const pokemonName = document.querySelector(`#pokemon-name`);
   const section = document.querySelector(`section`);
-  h2.innerHTML = `No.${pokemon.id}<br>${capitilize(pokemon.name)}`;
-  section.innerHTML = `<img src='${pokemon.sprites.front_shiny}'/>`;
+  pokemonName.innerHTML = `No. ${pokemon.id}<br>${capitilize(pokemon.name)}`;
+  section.innerHTML = `<img src='${pokemon.sprites.front_default}'/>`;
   getStats(pokemon);
+  totalStats(pokemon);
+  getType(pokemon);
+}
+
+const capitilize = (pokemonName) => {
+  const firstLetter = pokemonName.charAt(0);
+  const firstLetterCap = firstLetter.toUpperCase();
+  const remainingLetters = pokemonName.slice(1);
+  return firstLetterCap + remainingLetters;
 }
 
 const getStats = (pokemon) => {
-  console.log(pokemon);
   const stats = pokemon.stats.map(stat => {
     return `<ul>${stat.stat.name}<li>${stat.base_stat}<li></ul>`
   }).join(``);
@@ -49,12 +57,27 @@ const getStats = (pokemon) => {
   statsList.innerHTML = stats;
 }
 
+const totalStats = (pokemon) => {
+  let bst = 0;
+  for (let i = 0; i < pokemon.stats.length; i++) {
+    bst += pokemon.stats[i].base_stat;
+  }
+  const bstNumber = document.querySelector(`#bst-number`);
+  const h2BST = document.querySelector(`#BST`);
+  h2BST.innerText = `BST`;
+  bstNumber.innerText = bst;
+}
 
-const capitilize = (pokemonName) => {
-  const firstLetter = pokemonName.charAt(0);
-  const firstLetterCap = firstLetter.toUpperCase();
-  const remainingLetters = pokemonName.slice(1);
-  return firstLetterCap + remainingLetters;
+// Used a for loop here to break out of mapping everything, I don't feel as if this was the best choice at the moment
+
+const getType = (pokemon) => {
+  const types = pokemon.types;
+  let typeText = ``;
+  for (let i = 0; i < types.length; i++) {
+    typeText += `${types[i].type.name} `;
+  }
+  const typingContainer = document.querySelector(`#typing`);
+  typingContainer.innerHTML = typeText;
 }
 
 const init = async() => {
