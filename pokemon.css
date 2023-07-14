@@ -12,9 +12,18 @@ section {
 }
 
 #pokemonContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(30, 1fr);
+    grid-column-gap: 2px;
+    grid-row-gap: 3px;
+    }
+}
+
+a {
+  display: block;
+  margin: auto;
 }
 
 #stats {
@@ -23,9 +32,10 @@ section {
 }
 
 li {
-  display: flex;
+  list-style-type:none;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
 }
 
 h3 {
