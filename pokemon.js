@@ -1,6 +1,6 @@
 const getPokeCollection = async() => {
   try {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=151`);
   const data = await response.json();
   renderPokeCollection(data.results);
   } catch (err) {
@@ -15,7 +15,7 @@ const renderPokeCollection = (pokeArr) => {
     const pokeID = splitURL[6];
     return `<li><a href='' data-pokeDexNum='${pokeID}'>${pokeName}</a></li>`;
   }).join(``);
-  const ul = document.querySelector(`ul`);
+  const ul = document.querySelector(`#pokemonContainer`);
   ul.innerHTML = pokeCollection;
 }
 
